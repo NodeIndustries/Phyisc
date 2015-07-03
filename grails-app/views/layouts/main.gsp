@@ -1,19 +1,31 @@
-<!doctype html>
-<html lang="en" class="no-js">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title><g:layoutTitle default="Grails"/></title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <asset:stylesheet src="application.css"/>
-        <asset:javascript src="application.js"/>
+<%@ page contentType="text/html;charset=UTF-8" %>
+<html>
+<head>
+    <title><g:layoutTitle default="Node Industries"/></title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <g:layoutHead/>
-    </head>
-    <body>
-        <div id="grailsLogo" role="banner"><a href="http://grails.org"><asset:image src="grails_logo.png" alt="Grails"/></a></div>
-        <g:layoutBody/>
-        <div class="footer" role="contentinfo"></div>
-        <div id="spinner" class="spinner" style="display:none;"><g:message code="spinner.alt" default="Loading&hellip;"/></div>
-    </body>
+    <asset:stylesheet src="style.css"/>
+
+    <g:layoutHead/>
+</head>
+
+<body>
+<navbar class="fixed">
+    <div class="logo-background"></div>
+    %{--Todo: add logo text--}%
+    <asset:image class="logo" src="logo.svg" alt="Node Industries Logo" title="Oh hey! What's going on? We are planning on adding random tooltip text to the logo but not yet."/>
+    <items>
+        <item class="about">About</item>
+        <item class="products">Products</item>
+        <item class="software">Software</item>
+        <item class="code">Code</item>
+        <item class="av">AV</item>
+        <item class="science">Science</item>
+        <item class="ideas">Ideas</item>
+    </items>
+</navbar>
+<g:layoutBody/>
+</body>
 </html>

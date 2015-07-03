@@ -2,8 +2,8 @@
 <html>
     <head>
         <title>Page Not Found</title>
-        <meta name="layout" content="main">
-        <g:if env="development"><asset:stylesheet src="errors.css"/></g:if>
+        <meta name="layout" content="grailsmain">
+        <g:if env="development"><asset:stylesheet src="grailserrors.css"/></g:if>
     </head>
     <body>
         <ul class="errors">
