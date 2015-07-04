@@ -24,11 +24,11 @@
                 $SlideDuration:1000,
                 $SlideEasing:$JssorEasing$.$EaseInOutQuad
             };
-            var jssor_slider1 = new $JssorSlider$('slider1_container', options);
+            var jssor_homepageslider = new $JssorSlider$('homepageslider_container', options);
             function ScaleSlider() {
-                var parentWidth = $('#slider1_container').parent().width();
+                var parentWidth = $('#homepageslider_container').parent().width();
                 if (parentWidth) {
-                    jssor_slider1.$ScaleWidth(parentWidth);
+                    jssor_homepageslider.$ScaleWidth(parentWidth);
                 }
                 else
                     $JssorUtils$.$Delay(ScaleSlider, 30);
@@ -43,12 +43,13 @@
 
 <body>
 
-<div id="slider1_container" style="position: relative; top: 0px; left: 0px; width: 600px; height: 200px; overflow: hidden;">
-    <div u="loading" style="position: absolute; top: 0px; left: 0px;">
+<div id="homepageslider_container" style="position: relative; top: 0; left: 0; width: 600px; height: 200px; overflow: hidden;">
+    <div u="loading" style="align-items: center; display: flex; justify-content: center;">
+        <asset:image src="loading.gif"/>
         <h1>Loading...</h1>
     </div>
     <!-- Slides Container -->
-    <div u="slides" style="cursor: move; position: absolute; overflow: hidden; left: 0px; top: 0px; width: 600px; height: 200px;">
+    <div u="slides" style="cursor: move; position: absolute; overflow: hidden; left: 0; top: 0; width: 600px; height: 200px;">
         <div><asset:image u="image" src="sliderdemo/image1.jpg"/></div>
         <div><asset:image u="image" src="sliderdemo/image2.jpg"/></div>
     </div>
@@ -60,8 +61,7 @@
     </span>
     <!--#endregion Arrow Navigator Skin End -->
     <!-- Trigger -->
-    <script>jssor_slider1_starter('slider1_container');</script>
 </div>
-
+<div class="demo"></div>
 </body>
 </html>

@@ -18,3 +18,8 @@ if (typeof jQuery !== 'undefined') {
         });
     })(jQuery);
 }
+
+//Todo: add easter eggs (like the ones on the old site)
+function talktome(){
+    console.log("We are working on adding silly easter eggs to the site but they will be added when there is time");
+}

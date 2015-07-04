@@ -9,143 +9,282 @@ html, body {
   font-family: 'Open Sans', sans-serif;
 }
 
+.demo {
+  height: 1000px;
+}
+
 //navbar
 
-navbar {
-  position:fixed;
-  width:100%;
-  left:0;
-  right:0;
-  top:0;
-  height:60px;
-  z-index:100;
-  -webkit-box-shadow: 2.5px 2.5px 10px 0 rgba(0,0,0,0.5);
-  -moz-box-shadow: 2.5px 2.5px 10px 0 rgba(0,0,0,0.5);
-  box-shadow: 2.5px 2.5px 10px 0 rgba(0,0,0,0.5);
+@mixin clearfix {
+  &::after {
+    content: " "; /* Older browser do not support empty content */
+    visibility: hidden;
+    display: block;
+    height: 0;
+    clear: both;
+  }
 }
 
-navbar.unfixed {
-  background:none;
-}
+nav {
+  position: fixed;
+  height: 100%;
 
-navbar.fixed {
-  background:#2d2d2d;
-}
-
-navbar .logo-background {
-  position:absolute;
-  background:#5700ff;
-  width:450px;
-  height:95px;
-  min-height:95px;
-  left:0;
-  top:-5px;
-  z-index:200;
-  -webkit-transform: rotate(1deg);
-  -moz-transform: rotate(1deg);
-  transform: rotate(1deg);
-  -webkit-box-shadow: 5px 5px 10px 0 rgba(0,0,0,0.5);
-  -moz-box-shadow: 5px 5px 10px 0 rgba(0,0,0,0.5);
-  box-shadow: 5px 5px 10px 0 rgba(0,0,0,0.5);
-}
-
-navbar .logo {
-  position:absolute;
-  width:400px;
-  left:10px;
-  top:0;
-  z-index:201;
-}
-
-navbar items {
-  margin-left:500px;
-}
-
-navbar item {
-  color:#d7d1e5;
-  cursor:pointer;
-  height:60px;
-  line-height: 60px;
-  font-size:20pt;
-  font-weight:100;
-  padding:0 10px 0 10px;
-  margin:0;
-}
-
-@mixin navitem($bcolor, $fcolor) {
-  -webkit-transform: translateZ(0);
-  transform: translateZ(0);
-  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  -moz-osx-font-smoothing: grayscale;
-  position: relative;
-  -webkit-transition-property: color;
-  transition-property: color;
-  -webkit-transition-duration: 0.3s;
-  transition-duration: 0.3s;
-  &::before {
-    content: "";
-    position: absolute;
-    z-index: -1;
-    top: 0;
+  navbar {
+    position: fixed;
+    width: 100%;
     left: 0;
     right: 0;
-    bottom: 0;
-    background:$bcolor;
-    -webkit-transform: scaleX(0);
-    transform: scaleX(0);
-    -webkit-transform-origin: 0 50%;
-    transform-origin: 0 50%;
-    -webkit-transition-property: transform;
-    transition-property: transform;
-    -webkit-transition-duration: 0.3s;
-    transition-duration: 0.3s;
-    -webkit-transition-timing-function: ease;
-    transition-timing-function: ease;
+    top: 0;
+    height: 60px;
+    z-index: 100;
+    background: #2d2d2d;
+    -webkit-box-shadow: 2.5px 2.5px 10px 0 rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 2.5px 2.5px 10px 0 rgba(0, 0, 0, 0.5);
+    box-shadow: 2.5px 2.5px 10px 0 rgba(0, 0, 0, 0.5);
+    transition: background 0.3s, box-shadow 0.3s;
   }
-  &:hover {
-    color:$fcolor;
+
+  navbar.unfixed {
+    background: -moz-linear-gradient(top, rgba(0, 0, 0, 0.5) 0%, rgba(255, 255, 255, 0) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(0, 0, 0, 0.5)), color-stop(100%, rgba(255, 255, 255, 0))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.5) 0%, rgba(255, 255, 255, 0) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, rgba(0, 0, 0, 0.5) 0%, rgba(255, 255, 255, 0) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, rgba(0, 0, 0, 0.5) 0%, rgba(255, 255, 255, 0) 100%); /* IE10+ */
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 0%, rgba(255, 255, 255, 0) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#80000000', endColorstr='#00ffffff', GradientType=0); /* IE6-9 */
+    box-shadow: none;
   }
-  &:hover::before {
-    -webkit-transform: scaleX(1);
-    transform: scaleX(1);
+
+  navbar.unfixed .logo-background {
+    opacity: 0;
   }
-}
 
-navbar item.about {
-  @include navitem(#5700ff,#eee);
-  border-left: 2px solid #5700ff;
-}
+  navbar .logo-background {
+    position: absolute;
+    background: #5700ff;
+    width: 450px;
+    height: 95px;
+    min-height: 95px;
+    left: 0;
+    top: -5px;
+    z-index: 200;
+    -webkit-transform: rotate(1deg);
+    -moz-transform: rotate(1deg);
+    transform: rotate(1deg);
+    -webkit-box-shadow: 5px 5px 10px 0 rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 5px 5px 10px 0 rgba(0, 0, 0, 0.5);
+    box-shadow: 5px 5px 10px 0 rgba(0, 0, 0, 0.5);
+    opacity: 1;
+    transition: opacity 0.3s;
+  }
 
-navbar item.products {
-  @include navitem(#cd00ff,#eee);
-  border-left: 2px solid #cd00ff;
-}
+  navbar .logo {
+    position: absolute;
+    width: 400px;
+    left: 10px;
+    top: 0;
+    z-index: 201;
+  }
 
-navbar item.software {
-  @include navitem(#ff0000,#eee);
-  border-left: 2px solid #ff0000;
-}
+  navbar items {
+    margin-left: 500px;
+  }
 
-navbar item.code {
-  @include navitem(#ff6d00,#eee);
-  border-left: 2px solid #ff6d00;
-}
+  navbar item {
+    color: #d7d1e5;
+    cursor: pointer;
+    height: 60px;
+    line-height: 60px;
+    font-size: 20pt;
+    font-weight: 100;
+    padding: 0 10px 0 10px;
+    margin: 0;
+    transform: translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    backface-visibility: hidden;
+    position: relative;
+    transition: color 0.3s;
+  }
 
-navbar item.av {
-  @include navitem(#00ff24,#444);
-  border-left: 2px solid #00ff24;
-}
+  @mixin navitem($bcolor, $fcolor) {
+    &::before {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: $bcolor;
+      transform: scaleX(0);
+      transform-origin: 0 50%;
+      transition:transform 0.3s ease;
+    }
+    &:hover {
+      color: $fcolor;
+    }
+    &.active::before {
+      transform: scaleX(1);
+    }
+    &.active {
+      color: $fcolor;
+    }
+  }
 
-navbar item.science {
-  @include navitem(#00edff,#444);
-  border-left: 2px solid #00edff;
-}
+  navbar item.about {
+    @include navitem(#5700ff, #eee);
+    border-left: 2px solid #5700ff;
+  }
 
-navbar item.ideas {
-  @include navitem(#0068ff,#eee);
-  border-left: 2px solid #0068ff;
+  navbar item.products {
+    @include navitem(#cd00ff, #eee);
+    border-left: 2px solid #cd00ff;
+  }
+
+  navbar item.software {
+    @include navitem(#ff0000, #eee);
+    border-left: 2px solid #ff0000;
+  }
+
+  navbar item.code {
+    @include navitem(#ff6d00, #eee);
+    border-left: 2px solid #ff6d00;
+  }
+
+  navbar item.av {
+    @include navitem(#00ff24, #444);
+    border-left: 2px solid #00ff24;
+  }
+
+  navbar item.science {
+    @include navitem(#00edff, #444);
+    border-left: 2px solid #00edff;
+  }
+
+  navbar item.ideas {
+    @include navitem(#0068ff, #eee);
+    border-left: 2px solid #0068ff;
+  }
+
+  navbar search {
+    position: absolute;
+    right: 20px;
+    left: unset;
+    top: 10px;
+    cursor: pointer;
+    z-index: 102;
+    transition: left 1s ease;
+  }
+
+  navbar search.active {
+    right: unset;
+    left: 500px !important;
+  }
+
+  navbar .searchbar {
+    box-sizing: border-box;
+    position: absolute;
+    width: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 60px;
+    z-index: 101;
+    background: #313638;
+    transition: width 0.8s, padding 0.8s;
+    padding: 10px 0 0 0;
+  }
+
+  navbar .searchbar.active {
+    padding: 10px 80px 0 570px;
+    width: 100%;
+  }
+
+  navbar .search {
+    background: none;
+    height: 40px;
+    width: inherit;
+    border: 0 solid transparent;
+    border-bottom: solid #3e00ff 2px;
+    outline: none;
+    color: #eee;
+    font-size: 30px;
+    font-weight: 100;
+    z-index: 102;
+  }
+
+  navbar .searchbar .x {
+    position: absolute;
+    display: inline-block;
+    right: 20px;
+    top: 10px;
+    cursor: pointer;
+  }
+
+  dropdown {
+    position: fixed;
+    top: 60px;
+    width: auto;
+    max-height: 0;
+    background: #666;
+    z-index:99;
+    margin:0 0 0 500px;
+    -webkit-box-shadow: 0 2.5px 10px 0 rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 0 2.5px 10px 0 rgba(0, 0, 0, 0.5);
+    box-shadow: 0 2.5px 10px 0 rgba(0, 0, 0, 0.5);
+    overflow-x:auto;
+    overflow-y:hidden;
+    transition: max-height 0.3s;
+    white-space:nowrap;
+  }
+
+  dropdown.active {
+    max-height:200px;
+  }
+
+  dropdown section {
+    @include clearfix;
+    padding:0 20px 0 10px;
+    height:200px;
+    color:#eee;
+    display: inline-block;
+    font-weight:100;
+    max-width:500px;
+    white-space:normal;
+  }
+
+  dropdown section h1 {
+    font-weight:600;
+    color:#ddd;
+  }
+
+  dropdown.about section {
+    border-left: 6px solid #5d52b9;
+  }
+
+  dropdown.products section {
+    border-left: 6px solid #9f5db9;
+  }
+
+  dropdown.software section {
+    border-left: 6px solid #b95e5e;
+  }
+
+  dropdown.code section {
+    border-left: 6px solid #b97f55;
+  }
+
+  dropdown.av section {
+    border-left: 6px solid #62b965;
+  }
+
+  dropdown.science section {
+    border-left: 6px solid #69a6b9;
+  }
+
+  dropdown.ideas section {
+    border-left: 6px solid #5e7cb9;
+  }
 }
 
 //Jssor Slider
@@ -156,11 +295,17 @@ navbar item.ideas {
   width: 55px;  //size
   height: 55px; //size
   cursor: pointer;
-  background: url(../images/larrow.png) center center no-repeat;
+  background: url(../images/larrow.svg) center center no-repeat;
   background-size: 20px 20px;
   opacity: 0;
   overflow: hidden;
   transition:opacity 0.3s;
+}
+
+#homepageslider_container {
+  -webkit-box-shadow: 0 5px 10px 0 rgba(0,0,0,0.5);
+  -moz-box-shadow: 0 5px 10px 0 rgba(0,0,0,0.5);
+  box-shadow: 0 5px 10px 0 rgba(0,0,0,0.5);
 }
 
 .jssora21r {
@@ -169,18 +314,18 @@ navbar item.ideas {
   width: 55px;  //size
   height: 55px; //size
   cursor: pointer;
-  background: url(../images/rarrow.png) center center no-repeat;
+  background: url(../images/rarrow.svg) center center no-repeat;
   background-size: 20px 20px;
   overflow: hidden;
   opacity: 0;
   transition:opacity 0.3s;
 }
 
-#slider1_container:hover .jssora21l {
+#homepageslider_container:hover .jssora21l {
   opacity:1;
 }
 
-#slider1_container:hover .jssora21r {
+#homepageslider_container:hover .jssora21r {
   opacity:1;
 }
 
