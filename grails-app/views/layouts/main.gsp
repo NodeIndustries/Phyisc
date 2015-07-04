@@ -8,6 +8,8 @@
 
     <asset:stylesheet src="style.css"/>
 
+    <asset:javascript src="jquery-2.1.3.js"/>
+
     <g:layoutHead/>
 </head>
 
