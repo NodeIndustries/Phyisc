@@ -1,12 +1,88 @@
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic);
 @import url(fonts/fonts.css);
 
+//Todo: cursors?
+
 html, body {
   width: 100%;
   height: 100%;
   margin: 0;
   padding: 0;
   font-family: 'Open Sans', sans-serif;
+}
+
+//Links
+
+//Todo: This is just a reminder that the a.block class exsists
+
+//Todo: Scrollbar
+
+//Todo: Ensure 3D links don't show default effect or select one for the header or something...
+
+a, a:visited {
+  text-decoration: none;
+  position: relative;
+  color: #4dbaff;
+}
+a:after, a:visited:after {
+  content: '';
+  height: 3px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  background: #4dbaff;
+  transition: 0.2s;
+}
+a:hover:after, a:visited:hover:after {
+  width: 100%;
+}
+a.block, a:visited.block {
+  display: block;
+  padding: 0.5em;
+}
+a.block:hover, a:visited.block:hover {
+  background: #eee;
+  transition: 0.5s;
+}
+
+.link {
+  text-decoration:none;
+}
+.link-box {
+  text-decoration:none;
+  border:1px dotted;
+}
+.roll {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  perspective: 400px;
+  perspective-origin: 50% 50%;
+}
+.roll span {
+  display: block;
+  position: relative;
+  padding: 0 2px;
+  transition: all 400ms cubic-bezier(.5, 0, .2, 1);
+  transform-origin: 50% 0%;
+  transform-style: preserve-3d;
+}
+.roll:hover span {
+  background: #111;
+  transform: translate3d( 0px, 0px, -30px ) rotateX( 90deg );
+}
+.roll span:after {
+  content: attr(data-title);
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding: 0 2px;
+  color: #eee;
+  background: #4DBAFF;
+  transform-origin: 50% 0%;
+  transform: translate3d( 0px, 105%, 0px ) rotateX( -90deg );
 }
 
 .demo {
@@ -234,12 +310,15 @@ nav {
     box-shadow: 0 2.5px 10px 0 rgba(0, 0, 0, 0.5);
     overflow-x:auto;
     overflow-y:hidden;
-    transition: max-height 0.3s;
+    transition: max-height 0.3s, opacity 0.5s;
     white-space:nowrap;
+    opacity: 0;
   }
 
   dropdown.active {
     max-height:200px;
+    display:initial;
+    opacity: 1;
   }
 
   dropdown section {
@@ -302,10 +381,11 @@ nav {
   transition:opacity 0.3s;
 }
 
-#homepageslider_container {
+.homepageslider_container {
   -webkit-box-shadow: 0 5px 10px 0 rgba(0,0,0,0.5);
   -moz-box-shadow: 0 5px 10px 0 rgba(0,0,0,0.5);
   box-shadow: 0 5px 10px 0 rgba(0,0,0,0.5);
+  z-index:-20;
 }
 
 .jssora21r {

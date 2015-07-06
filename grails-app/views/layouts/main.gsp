@@ -12,8 +12,6 @@
 
     <asset:javascript src="jquery-2.1.3.js"/>
 
-    <asset:javascript src="application.js"/>
-
     <script>
         $(window).scroll(function () {
             if ($(document).scrollTop() > 0) {
@@ -63,6 +61,29 @@
                     $("navbar item." + item).toggleClass("active");
                 });
             });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function(){
+            var supports3DTransforms =  document.body.style['webkitPerspective'] !== undefined ||
+                    document.body.style['MozPerspective'] !== undefined;
+            function linkify( selector ) {
+                if( supports3DTransforms ) {
+
+                    var nodes = document.querySelectorAll( selector );
+
+                    for( var i = 0, len = nodes.length; i < len; i++ ) {
+                        var node = nodes[i];
+
+                        if( !node.className || !node.className.match( /roll/g ) ) {
+                            node.className += ' roll';
+                            node.innerHTML = '<span data-title="'+ node.text +'">' + node.innerHTML + '</span>';
+                        }
+                    }
+                }
+            }
+            linkify( 'a.link' );
         });
     </script>
 
